@@ -8,37 +8,51 @@ const packs = [
   {
     name: "Icon Pack | Total Look",
     image: "/pack1.webp",
-    link: "https://www.yelloworiginal.com/pack/icon-pack"
+    link: "https://www.yelloworiginal.com/pack/icon-pack",
+    comparePrice: 99.94,
+    packPrice: 89.94,
   },
   {
     name: "Basic T-Shirt",
     image: "/pack7.webp",
-    link: "https://www.yelloworiginal.com/pack/basic-t-shirt"
+    link: "https://www.yelloworiginal.com/pack/basic-t-shirt",
+    comparePrice: 39.98,
+    packPrice: 29.98,
   },
   {
     name: "Original Pack | Total Look",
     image: "/pack2.webp",
-    link: "https://www.yelloworiginal.com/pack/original-pack"
+    link: "https://www.yelloworiginal.com/pack/original-pack",
+    comparePrice: 109.9,
+    packPrice: 99.9,
   },
   {
     name: "Casual Look",
     image: "/pack3.webp",
-    link: "https://www.yelloworiginal.com/pack/casual-look"
+    link: "https://www.yelloworiginal.com/pack/casual-look",
+    comparePrice: 95.92,
+    packPrice: 85.92,
   },
   {
     name: "San Valentine Total Look",
     image: "/pack4.webp",
-    link: "https://www.yelloworiginal.com/pack/san-valentine-total-look"
+    link: "https://www.yelloworiginal.com/pack/san-valentine-total-look",
+    comparePrice: 105.9,
+    packPrice: 95.9,
   },
   {
     name: "Camisas Sarga",
     image: "/pack5.webp",
-    link: "https://www.yelloworiginal.com/pack/camisas-sarga"
+    link: "https://www.yelloworiginal.com/pack/camisas-sarga",
+    comparePrice: 99.9,
+    packPrice: 89.9,
   },
   {
     name: "Urban Smart Pack",
     image: "/pack6.webp",
-    link: "https://www.yelloworiginal.com/pack/urban-smart-pack"
+    link: "https://www.yelloworiginal.com/pack/urban-smart-pack",
+    comparePrice: 105.9,
+    packPrice: 95.9,
   }
 ]
 
@@ -47,6 +61,10 @@ const SWIPE_OFFSET = 70
 const SWIPE_VELOCITY = 500
 const TRUST_BADGES = ["Envio rapido", "Cambios faciles", "Pago 100% seguro"]
 const OFFICIAL_PACKS_LINK = "https://www.yelloworiginal.com/colecciones/packs"
+const euroFormatter = new Intl.NumberFormat("es-ES", {
+  style: "currency",
+  currency: "EUR",
+})
 
 export default function Home() {
   const [phase, setPhase] = useState<"intro" | "gallery">("intro")
@@ -57,6 +75,7 @@ export default function Home() {
   const mobileCtaHref = phase === "intro" ? activePack.link : OFFICIAL_PACKS_LINK
   const mobileCtaLabel =
     phase === "intro" ? "Comprar este pack y ahorrar 10€" : "Comprar packs y ahorrar 10€"
+  const activePackSavings = Number((activePack.comparePrice - activePack.packPrice).toFixed(2))
   const hasPreviousPack = introIndex > 0
   const hasNextPack = introIndex < packs.length - 1
 
@@ -218,6 +237,17 @@ export default function Home() {
                       Elige tu estilo en segundos y paga menos desde hoy:
                       <strong className="text-white"> cada pack incluye 10€ de ahorro directo</strong>.
                     </p>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="text-sm text-white/65 line-through md:text-base">
+                        {euroFormatter.format(activePack.comparePrice)}
+                      </span>
+                      <span className="text-2xl font-bold text-white md:text-3xl">
+                        {euroFormatter.format(activePack.packPrice)}
+                      </span>
+                      <span className="rounded-full border border-[#c29c03]/55 bg-[#c29c03]/20 px-3 py-1 text-xs font-semibold text-white">
+                        Ahorras {euroFormatter.format(activePackSavings)}
+                      </span>
+                    </div>
                     <a
                       href={activePack.link}
                       className="inline-flex w-full justify-center rounded-full border border-[#c29c03] bg-[#c29c03]/25 px-7 py-3 text-sm font-semibold transition duration-300 hover:scale-105 hover:bg-[#c29c03]/40 sm:w-fit md:text-base"
@@ -332,6 +362,14 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-4 p-5">
                     <h3 className="text-xl font-semibold">{pack.name}</h3>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-white/65 line-through">
+                        {euroFormatter.format(pack.comparePrice)}
+                      </span>
+                      <span className="text-xl font-bold text-white">
+                        {euroFormatter.format(pack.packPrice)}
+                      </span>
+                    </div>
                     <a
                       href={pack.link}
                       className="inline-flex w-fit rounded-full border border-white/30 px-6 py-2.5 text-sm font-semibold transition duration-300 hover:bg-white/10"
