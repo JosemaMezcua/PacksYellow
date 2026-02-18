@@ -14,7 +14,7 @@ const packs = [
   },
   {
     name: "Basic T-Shirt",
-    image: "/pack7.webp",
+    image: "/pack3.webp",
     link: "https://www.yelloworiginal.com/pack/basic-t-shirt",
     comparePrice: 39.98,
     packPrice: 29.98,
@@ -28,14 +28,14 @@ const packs = [
   },
   {
     name: "Casual Look",
-    image: "/pack3.webp",
+    image: "/pack4.webp",
     link: "https://www.yelloworiginal.com/pack/casual-look",
     comparePrice: 95.92,
     packPrice: 85.92,
   },
   {
     name: "San Valentine Total Look",
-    image: "/pack4.webp",
+    image: "/pack6.webp",
     link: "https://www.yelloworiginal.com/pack/san-valentine-total-look",
     comparePrice: 105.9,
     packPrice: 95.9,
@@ -49,7 +49,7 @@ const packs = [
   },
   {
     name: "Urban Smart Pack",
-    image: "/pack6.webp",
+    image: "/pack7.webp",
     link: "https://www.yelloworiginal.com/pack/urban-smart-pack",
     comparePrice: 105.9,
     packPrice: 95.9,
